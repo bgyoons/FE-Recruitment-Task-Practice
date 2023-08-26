@@ -5,12 +5,19 @@
   font-style: normal;
 }
 
+:root(color-mode="dark") {
+  --background: #000;
+  --textColor: #fff;
+}
+
 html {
   box-sizing: border-box;
 }
 
 body * {
   font-family: Goyang;
+  background-color: var(--background);
+  color: var(--textColor);
 }
 
 *,
@@ -85,6 +92,11 @@ body * {
   width: 100%;
 }
 
+.DarkModeToggle {
+  width: 30px;
+  height: 30px;
+}
+
 @media screen and (max-width: 992px) {
   .SearchResult ul {
     grid-template-columns: repeat(3, minmax(250px, 1fr));
@@ -104,12 +116,5 @@ body * {
 @media screen and (max-width: 576px) {
   .SearchResult ul {
     grid-template-columns: repeat(1, minmax(250px, 1fr));
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000;
-    color: white;
   }
 }
