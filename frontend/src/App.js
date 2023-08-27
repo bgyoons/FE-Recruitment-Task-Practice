@@ -1,5 +1,3 @@
-console.log("app is running!");
-
 class App {
   $target = null;
   data = [];
