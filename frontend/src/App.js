@@ -15,12 +15,23 @@ class App {
         this.loading.setState({
           isLoading: true
         });
-        api.fetchCats(keyword).then(({ data }) => {
-          this.setState(data)
-          this.loading.setState({
-            isLoading: false
+        if (keyword) {
+          api.fetchCats(keyword).then(({ data }) => {
+            // this.finishGetData(data)
+            this.setState(data)
+            this.loading.setState({
+              isLoading: false
+            });
           });
-        });
+        } else {
+          api.getRandomCats().then(({ data }) => {
+            // this.finishGetData(data)
+            this.setState(data)
+            this.loading.setState({
+              isLoading: false
+            });
+          });
+        }
       }
     });
 
@@ -52,5 +63,12 @@ class App {
     console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
+  }
+
+  finishGetData(data) {
+    this.setState(data)
+    this.loading.setState({
+      isLoading: false
+    });
   }
 }
