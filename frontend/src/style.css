@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-:root(color-mode="dark") {
+:root[color-mode="dark"] {
   --background: #000;
   --textColor: #fff;
 }
