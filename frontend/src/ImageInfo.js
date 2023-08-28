@@ -10,12 +10,27 @@ class ImageInfo {
 
     this.data = data;
 
+    document.addEventListener("keypress", e => {
+      if (e.key === "escape") this.closeModal();
+    });
+
+    $imageInfo.addEventListener("click", e => {
+      if (e.target.className === "ImageInfo") this.closeModal();
+    });
+
     this.render();
   }
 
   setState(nextData) {
     this.data = nextData;
     this.render();
+  }
+
+  closeModal() {
+    this.setState({
+      visible: false,
+      image: null
+    });
   }
 
   render() {
@@ -35,6 +50,11 @@ class ImageInfo {
           </div>
         </div>`;
       this.$imageInfo.style.display = "block";
+
+      const $closeButton = document.querySelector(".close");
+      $closeButton.addEventListener("click", () => {
+        this.closeModal()
+      });
     } else {
       this.$imageInfo.style.display = "none";
     }

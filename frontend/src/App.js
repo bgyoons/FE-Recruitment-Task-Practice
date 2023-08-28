@@ -42,11 +42,19 @@ class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: image => {
-        this.imageInfo.setState({
-          visible: true,
-          image
+      onClick: data => {
+        this.loading.setState({
+          isLoading: true
         });
+        api.getRandomCats(data.id).then(({ image }) => {
+          this.imageInfo.setState({
+            visible: true,
+            image
+          });
+          this.loading.setState({
+            isLoading: false
+          });
+        })
       }
     });
 
