@@ -55,14 +55,22 @@ body * {
   width: 100%;
 }
 
-.SearchInput {
+.SearchInputSection {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.SearchInputSection .SearchInput {
+  display: inline-block;
   width: 80%;
   font-size: 40px;
   padding: 10px 15px;
 }
 
-.RandomButton {
-  width: 15%;
+.SearchInputSection .RandomButton {
+  display: inline-block;
+  width: 18%;
   height: 75px;
   font-size: 40px;
   background-color: transparent;

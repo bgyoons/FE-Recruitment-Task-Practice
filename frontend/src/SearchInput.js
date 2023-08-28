@@ -7,6 +7,7 @@ class SearchInput {
     const $searchInput = document.createElement("input");
     this.$searchInput = $searchInput;
     this.$searchInput.placeholder = "고양이를 검색해보세요.|";
+    $section.className = "SearchInputSection";
     $searchInput.className = "SearchInput";
 
     const $randomButton = document.createElement("button");
