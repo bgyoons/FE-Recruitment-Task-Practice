@@ -12,6 +12,8 @@
 
 html {
   box-sizing: border-box;
+  background-color: var(--background);
+  color: var(--textColor);
 }
 
 body * {
@@ -100,7 +102,17 @@ body * {
   width: 100%;
 }
 
-.DarkModeToggle {
+.DarkModeSection {
+  display: flex;
+  align-items: center;
+}
+
+.DarkModeSection span {
+  margin-left: 5px;
+  font-size: 24px;
+}
+
+.DarkModeSection .DarkModeToggle {
   width: 30px;
   height: 30px;
 }

@@ -4,15 +4,18 @@ class DarkModeToggle {
   constructor({ $target }) {
     const $darkModeSection = document.createElement("section");
     const $darkModeToggle = document.createElement("input");
+    const $darkModeText = document.createElement("span");
 
     this.$darkModeSection = $darkModeSection;
     this.$darkModeToggle = $darkModeToggle;
     this.$darkModeToggle.type = 'checkbox';
+    this.$darkModeText.innerHTML = 'dark mode';
 
     $darkModeSection.className = "DarkModeSection";
     $darkModeToggle.className = "DarkModeToggle";
 
     $darkModeSection.appendChild($darkModeToggle);
+    $darkModeSection.appendChild($darkModeText);
     $target.appendChild($darkModeSection);
 
     $darkModeToggle.addEventListener("change", e => {
