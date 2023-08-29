@@ -46,7 +46,7 @@ class App {
         this.loading.setState({
           isLoading: true
         });
-        api.getRandomCats(data.id).then(({ image }) => {
+        api.getCatDetail(data.id).then(({ image }) => {
           this.imageInfo.setState({
             visible: true,
             image
