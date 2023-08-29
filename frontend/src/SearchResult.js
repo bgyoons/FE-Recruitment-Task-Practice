@@ -2,6 +2,7 @@ class SearchResult {
   $searchResult = null;
   $ul = null;
   data = null;
+  isEmptyState = false;
   onClick = null;
 
   constructor({ $target, initialData, onClick }) {
@@ -22,21 +23,30 @@ class SearchResult {
     this.render();
   }
 
-  render() {
-    this.$ul.innerHTML = this.data
-      .map(
-        cat => `
-          <li class="item">
-            <img src=${cat.url} alt=${cat.name} />
-          </li>
-        `
-      )
-      .join("");
+  checkEmptyState(boolean) {
+    this.isEmptyState = boolean;
+    this.render();
+  }
 
-    this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-      $item.addEventListener("click", () => {
-        this.onClick(this.data[index]);
+  render() {
+    if (this.isEmptyState) {
+      this.$ul.innerHTML = '<li>검색 결과가 없습니다.</li>';
+    } else {
+      this.$ul.innerHTML = this.data
+        .map(
+          cat => `
+        <li class="item">
+        <img src=${cat.url} alt=${cat.name} />
+        </li>
+        `
+        )
+        .join("");
+
+      this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
+        $item.addEventListener("click", () => {
+          this.onClick(this.data[index]);
+        });
       });
-    });
+    }
   }
 }

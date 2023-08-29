@@ -19,6 +19,7 @@ class App {
           api.fetchCats(keyword).then(({ data }) => {
             // this.finishGetData(data)
             this.setState(data)
+            this.searchResult.checkEmptyState(!!(data.length))
             this.loading.setState({
               isLoading: false
             });
