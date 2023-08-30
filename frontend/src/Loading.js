@@ -11,8 +11,6 @@ class Loading {
     this.data = {
       isLoading: false
     }
-
-    console.log("Loading Component created.", this);
   }
 
   setState(nextData) {
