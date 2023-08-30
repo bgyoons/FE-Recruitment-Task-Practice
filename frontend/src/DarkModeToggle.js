@@ -9,7 +9,7 @@ class DarkModeToggle {
     this.$darkModeSection = $darkModeSection;
     this.$darkModeToggle = $darkModeToggle;
     this.$darkModeToggle.type = 'checkbox';
-    this.$darkModeText.innerHTML = 'dark mode';
+    $darkModeText.textContent = 'dark mode';
 
     $darkModeSection.className = "DarkModeSection";
     $darkModeToggle.className = "DarkModeToggle";
