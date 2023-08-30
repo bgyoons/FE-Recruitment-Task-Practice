@@ -9,6 +9,7 @@ class SearchInput {
     this.$searchInput.placeholder = "고양이를 검색해보세요.|";
     $section.className = "SearchInputSection";
     $searchInput.className = "SearchInput";
+    $searchInput.autofocus = true;
 
     const $randomButton = document.createElement("button");
     $randomButton.textContent = "랜덤고양이";
@@ -23,6 +24,10 @@ class SearchInput {
         onSearch(e.target.value);
       }
     });
+
+    $searchInput.addEventListener('click', () => {
+      $searchInput.value = '';
+    })
 
     $randomButton.addEventListener("click", () => {
       onSearch('');
