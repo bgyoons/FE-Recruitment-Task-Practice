@@ -9,7 +9,7 @@ class Loading {
     $target.appendChild($loading);
 
     this.data = {
-      isLoading: false
+      visible: false
     }
   }
 
@@ -18,8 +18,20 @@ class Loading {
     this.render();
   }
 
+  show() {
+    this.setState({
+      visible: true
+    });
+  }
+
+  hide() {
+    this.setState({
+      visible: false
+    });
+  }
+
   render() {
-    if (this.data.isLoading) {
+    if (this.data.visible) {
       this.$loading.innerHTML = `
         <div>
           <p>로딩 중</p>
