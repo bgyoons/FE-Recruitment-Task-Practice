@@ -10,8 +10,8 @@ class ImageInfo {
 
     this.data = data;
 
-    document.addEventListener("keypress", e => {
-      if (e.key === "escape") this.closeModal();
+    document.documentElement.addEventListener("keydown", e => {
+      if (e.key === "Escape") this.closeModal();
     });
 
     $imageInfo.addEventListener("click", e => {
@@ -29,13 +29,13 @@ class ImageInfo {
   closeModal() {
     this.setState({
       visible: false,
-      image: null
+      info: null
     });
   }
 
   render() {
     if (this.data.visible) {
-      const { name, url, temperament, origin } = this.data.image;
+      const { name, url, temperament, origin } = this.data.info;
 
       this.$imageInfo.innerHTML = `
         <div class="content-wrapper">

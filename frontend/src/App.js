@@ -47,10 +47,10 @@ class App {
         this.loading.setState({
           isLoading: true
         });
-        api.getCatDetail(data.id).then(({ image }) => {
+        api.getCatDetail(data.id).then(({ data }) => {
           this.imageInfo.setState({
             visible: true,
-            image
+            info: data
           });
           this.loading.setState({
             isLoading: false
@@ -63,7 +63,7 @@ class App {
       $target,
       data: {
         visible: false,
-        image: null
+        info: null
       }
     });
   }
