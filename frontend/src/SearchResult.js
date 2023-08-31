@@ -2,7 +2,7 @@ class SearchResult {
   $searchResult = null;
   $ul = null;
   data = null;
-  isEmptyState = false;
+  visible = null;
   onClick = null;
 
   constructor({ $target, initialData, onClick }) {
@@ -24,14 +24,12 @@ class SearchResult {
   }
 
   checkEmptyState(boolean) {
-    this.isEmptyState = boolean;
+    this.visible = boolean;
     this.render();
   }
 
   render() {
-    if (this.isEmptyState) {
-      this.$ul.innerHTML = '<li>검색 결과가 없습니다.</li>';
-    } else {
+    if (this.visible) {
       this.$ul.innerHTML = this.data
         .map(
           cat => `
@@ -47,6 +45,8 @@ class SearchResult {
           this.onClick(this.data[index]);
         });
       });
-    }
+    } else if (!this.visible && typeof this.visible === 'boolean') {
+      this.$ul.innerHTML = '<li class="EmptyState">검색 결과가 없습니다.</li>';
+    } else { }
   }
 }
