@@ -16,7 +16,7 @@ class App {
         if (keyword) {
           api.fetchCats(keyword).then(({ data }) => {
             this.setState(data)
-            this.searchResult.checkEmptyState(!!(data.length))
+            this.searchResult.checkEmptyState(!!(data.length));
             this.loading.hide();
           });
         } else {
@@ -57,7 +57,6 @@ class App {
   }
 
   setState(nextData) {
-    console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
   }
