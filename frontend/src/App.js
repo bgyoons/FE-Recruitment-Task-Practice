@@ -15,8 +15,8 @@ class App {
         this.loading.show();
         if (keyword) {
           api.fetchCats(keyword).then(({ data }) => {
+            localStorage.setItem('LAST_RESULT', JSON.stringify(data));
             this.setState(data)
-            this.searchResult.checkEmptyState(!!(data.length));
             this.loading.hide();
           });
         } else {

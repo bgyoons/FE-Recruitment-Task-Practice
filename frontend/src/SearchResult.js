@@ -15,16 +15,16 @@ class SearchResult {
     this.data = initialData;
     this.onClick = onClick;
 
-    this.render();
+    const LAST_RESULT = localStorage.getItem('LAST_RESULT');
+    if (LAST_RESULT) {
+      let lastResult = JSON.parse(LAST_RESULT);
+      this.setState(lastResult);
+    }
   }
 
   setState(nextData) {
     this.data = nextData;
-    this.render();
-  }
-
-  checkEmptyState(boolean) {
-    this.visible = boolean;
+    this.visible = !!(nextData.length);
     this.render();
   }
 
