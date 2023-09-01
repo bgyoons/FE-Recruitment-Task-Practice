@@ -83,6 +83,19 @@ body * {
   border: 1px solid slateblue;
 }
 
+.SearchHistory .HistoryKeyword {
+  width: max-content;
+  padding: 0 10px;
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.SearchHistory .HistoryKeyword:hover {
+  background-color: slateblue;
+}
+
 .ImageInfo {
   position: fixed;
   left: 0;

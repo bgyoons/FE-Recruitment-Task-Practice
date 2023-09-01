@@ -19,8 +19,18 @@ class SearchInput {
     $section.appendChild($randomButton);
     $target.appendChild($section);
 
+    const SEARCH_HISTORY = localStorage.getItem('SEARCH_HISTORY') || '[]';
+    let storageHistory = JSON.parse(SEARCH_HISTORY);
+
+    this.searchHistory = new SearchHistory({ $target, onSearch });
+    this.searchHistory.setState(storageHistory);
+
     $searchInput.addEventListener("keyup", e => {
       if (e.key === 'Enter') {
+        if (storageHistory.length === 5) storageHistory.shift();
+        let totalHistory = storageHistory.concat(e.target.value);
+        this.searchHistory.setState(totalHistory);
+        localStorage.setItem('SEARCH_HISTORY', JSON.stringify(totalHistory));
         onSearch(e.target.value);
       }
     });
