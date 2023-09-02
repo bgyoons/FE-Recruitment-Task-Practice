@@ -28,19 +28,27 @@ class SearchResult {
     this.render();
   }
 
+  IO = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelector('img').src = entry.target.querySelector('img').dataset.src;
+      }
+    });
+  })
+
   render() {
     if (this.visible) {
       this.$ul.innerHTML = this.data
-        .map(
-          cat => `
+        .map((cat, index) => `
         <li class="item">
-        <img src=${cat.url} alt=${cat.name} />
+          <img class="item-img" src="" data-src=${cat.url} alt=${cat.name} />
         </li>
-        `
-        )
-        .join("");
+        `).join("");
+
 
       this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
+        this.IO.observe($item);
+
         $item.addEventListener("click", () => {
           this.onClick(this.data[index]);
         });
