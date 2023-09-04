@@ -2,41 +2,29 @@ const API_ENDPOINT =
   "http://localhost:4001";
 // "https://rhdd0roxs5.execute-api.ap-northeast-2.amazonaws.com/dev";
 
+const request = async url => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/api/cats/${url}`);
+    if (response.status === 200) return response.json();
+    else throw { result: response, message: 'request fail' };
+  } catch (error) {
+    console.log(error);
+    alert(error.message);
+    return { data: null };
+  }
+};
+
 const api = {
-  fetchCats: async keyword => {
-    try {
-      const response = await fetch(`${API_ENDPOINT}/api/cats/search?q=${keyword}`)
-      const cats = await response.json();
-      return cats;
-    } catch (error) {
-      console.error(error)
-    }
+  fetchCats: keyword => {
+    return request(`search?q=${keyword}`);
   },
-  fetchMoreCats: async (keyword, page) => {
-    try {
-      const response = await fetch(`${API_ENDPOINT}/api/cats/search?q=${keyword}&page=${page}`)
-      const cats = await response.json();
-      return cats;
-    } catch (error) {
-      console.error(error)
-    }
+  fetchMoreCats: (keyword, page) => {
+    return request(`search?q=${keyword}&page=${page}`);
   },
-  getRandomCats: async () => {
-    try {
-      const response = await fetch(`${API_ENDPOINT}/api/cats/random50`)
-      const cats = await response.json();
-      return cats;
-    } catch (error) {
-      console.error(error)
-    }
+  fetchRandomCats: () => {
+    return request('random50');
   },
-  getCatDetail: async id => {
-    try {
-      const response = await fetch(`${API_ENDPOINT}/api/cats/${id}`)
-      const detail = await response.json();
-      return detail;
-    } catch (error) {
-      console.error(error)
-    }
-  },
+  fetchCatDetail: id => {
+    return request(`${id}`);
+  }
 };

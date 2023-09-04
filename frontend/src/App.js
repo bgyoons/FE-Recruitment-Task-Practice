@@ -17,7 +17,7 @@ class App {
         if (keyword) {
           api.fetchCats(keyword).then(({ data }) => {
             localStorage.setItem('LAST_RESULT', JSON.stringify(data));
-            this.setState(data)
+            this.setState(data || []);
             this.loading.hide();
           });
         } else {
@@ -52,9 +52,11 @@ class App {
         const page = this.page + 1;
         let storageHistory = JSON.parse(SEARCH_HISTORY);
         api.fetchMoreCats(storageHistory[storageHistory.length - 1], page).then(({ data }) => {
-          let newData = this.data.concat(data);
-          this.setState(newData);
-          this.page = page;
+          if (data) {
+            let newData = this.data.concat(data);
+            this.setState(newData);
+            this.page = page;
+          }
           this.loading.hide();
         });
       }
