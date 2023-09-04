@@ -28,9 +28,11 @@ class SearchInput {
     $searchInput.addEventListener("keyup", e => {
       if (e.key === 'Enter') {
         if (storageHistory.length === 5) storageHistory.shift();
-        let totalHistory = storageHistory.concat(e.target.value);
-        this.searchHistory.setState(totalHistory);
-        localStorage.setItem('SEARCH_HISTORY', JSON.stringify(totalHistory));
+        if (!storageHistory.includes(e.target.value)) {
+          let totalHistory = storageHistory.concat(e.target.value);
+          this.searchHistory.setState(totalHistory);
+          localStorage.setItem('SEARCH_HISTORY', JSON.stringify(totalHistory));
+        }
         onSearch(e.target.value);
       }
     });
