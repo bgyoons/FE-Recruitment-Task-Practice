@@ -1,6 +1,7 @@
 class App {
   $target = null;
   data = [];
+  page = 1;
 
   constructor($target) {
     this.$target = $target;
@@ -44,6 +45,18 @@ class App {
           });
           this.loading.hide();
         })
+      },
+      onNextPage: () => {
+        this.loading.show();
+        const SEARCH_HISTORY = localStorage.getItem('SEARCH_HISTORY');
+        const page = this.page + 1;
+        let storageHistory = JSON.parse(SEARCH_HISTORY);
+        api.fetchMoreCats(storageHistory[storageHistory.length - 1], page).then(({ data }) => {
+          let newData = this.data.concat(data);
+          this.setState(newData);
+          this.page = page;
+          this.loading.hide();
+        });
       }
     });
 

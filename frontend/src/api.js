@@ -12,6 +12,15 @@ const api = {
       console.error(error)
     }
   },
+  fetchMoreCats: async (keyword, page) => {
+    try {
+      const response = await fetch(`${API_ENDPOINT}/api/cats/search?q=${keyword}&page=${page}`)
+      const cats = await response.json();
+      return cats;
+    } catch (error) {
+      console.error(error)
+    }
+  },
   getRandomCats: async () => {
     try {
       const response = await fetch(`${API_ENDPOINT}/api/cats/random50`)

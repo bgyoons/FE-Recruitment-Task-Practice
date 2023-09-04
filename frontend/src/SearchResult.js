@@ -5,7 +5,7 @@ class SearchResult {
   visible = null;
   onClick = null;
 
-  constructor({ $target, initialData, onClick }) {
+  constructor({ $target, initialData, onClick, onNextPage }) {
     this.$searchResult = document.createElement("section");
     this.$searchResult.className = "SearchResult";
     this.$ul = document.createElement("ul");
@@ -14,6 +14,7 @@ class SearchResult {
 
     this.data = initialData;
     this.onClick = onClick;
+    this.onNextPage = onNextPage;
 
     const LAST_RESULT = localStorage.getItem('LAST_RESULT');
     if (LAST_RESULT) {
@@ -32,6 +33,7 @@ class SearchResult {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.querySelector('img').src = entry.target.querySelector('img').dataset.src;
+        if (this.data.length - 1 === +entry.target.dataset.index) this.onNextPage();
       }
     });
   })
@@ -40,8 +42,8 @@ class SearchResult {
     if (this.visible) {
       this.$ul.innerHTML = this.data
         .map((cat, index) => `
-        <li class="item">
-          <img class="item-img" src="" data-src=${cat.url} alt=${cat.name} />
+        <li class="item" data-index=${index}>
+          <img class="item-img" src="https://pbs.twimg.com/media/CYEoaOwUkAAxIUR.jpg" data-src=${cat.url} alt=${cat.name} />
         </li>
         `).join("");
 
