@@ -33,3 +33,5 @@ class SearchHistory {
     } else this.$ul.innerHTML = '';
   }
 }
+
+export default SearchHistory;

@@ -60,3 +60,5 @@ class SearchResult {
     } else { }
   }
 }
+
+export default SearchResult;

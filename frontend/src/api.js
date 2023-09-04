@@ -1,7 +1,6 @@
-const API_ENDPOINT =
-  "http://localhost:4001";
-// "https://rhdd0roxs5.execute-api.ap-northeast-2.amazonaws.com/dev";
+import config from "./config.js";
 
+const { API_ENDPOINT } = config;
 const REQUEST_ERROR = {
   '500': { message: 'request fail' }
 }
@@ -32,3 +31,5 @@ const api = {
     return request(`${id}`);
   }
 };
+
+export default api;

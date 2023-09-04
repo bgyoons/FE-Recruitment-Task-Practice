@@ -35,3 +35,5 @@ class DarkModeToggle {
     document.documentElement.setAttribute('color-mode', isDarkMode ? 'dark' : 'light');
   }
 }
+
+export default DarkModeToggle;

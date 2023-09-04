@@ -1,3 +1,10 @@
+import DarkModeToggle from "./DarkModeToggle.js";
+import SearchInput from "./SearchInput.js";
+import Loading from "./Loading.js";
+import SearchResult from "./SearchResult.js";
+import ImageInfo from "./ImageInfo.js";
+import api from "./api.js";
+
 class App {
   $target = null;
   data = [];
@@ -21,8 +28,8 @@ class App {
             this.loading.hide();
           });
         } else {
-          api.getRandomCats().then(({ data }) => {
-            this.setState(data)
+          api.fetchRandomCats().then(({ data }) => {
+            this.setState(data || [])
             this.loading.hide();
           });
         }
@@ -38,10 +45,13 @@ class App {
       initialData: this.data,
       onClick: data => {
         this.loading.show();
-        api.getCatDetail(data.id).then(({ data }) => {
+        api.fetchCatDetail(data.id).then(({ data }) => {
           this.imageInfo.setState({
             visible: true,
-            info: data
+            info: data || {
+              visible: false,
+              info: null
+            }
           });
           this.loading.hide();
         })
@@ -76,3 +86,5 @@ class App {
     this.searchResult.setState(nextData);
   }
 }
+
+export default App;

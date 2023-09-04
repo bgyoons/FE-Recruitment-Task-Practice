@@ -1,4 +1,4 @@
-const TEMPLATE = '<input type="text">';
+import SearchHistory from "./SearchHistory.js";
 
 class SearchInput {
   constructor({ $target, onSearch }) {
@@ -44,3 +44,5 @@ class SearchInput {
     });
   }
 }
+
+export default SearchInput;
