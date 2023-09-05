@@ -22,7 +22,7 @@ class SearchInput {
     const SEARCH_HISTORY = localStorage.getItem('SEARCH_HISTORY') || '[]';
     let storageHistory = JSON.parse(SEARCH_HISTORY);
 
-    this.searchHistory = new SearchHistory({ $target, onSearch });
+    this.searchHistory = new SearchHistory({ $target: $section, onSearch });
     this.searchHistory.setState(storageHistory);
 
     $searchInput.addEventListener("keyup", e => {
