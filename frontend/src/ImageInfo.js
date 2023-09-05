@@ -24,6 +24,7 @@ class ImageInfo {
   setState(nextData) {
     this.data = nextData;
     this.render();
+    this.setFade(nextData.visible);
   }
 
   closeModal() {
@@ -31,6 +32,11 @@ class ImageInfo {
       visible: false,
       info: null
     });
+  }
+
+  setFade(visible) {
+    if (visible) this.$imageInfo.classList.add('show');
+    else this.$imageInfo.classList.remove('show');
   }
 
   render() {
@@ -49,14 +55,11 @@ class ImageInfo {
             <div>태생: ${origin}</div>
           </div>
         </div>`;
-      this.$imageInfo.style.display = "block";
 
       const $closeButton = document.querySelector(".close");
       $closeButton.addEventListener("click", () => {
         this.closeModal()
       });
-    } else {
-      this.$imageInfo.style.display = "none";
     }
   }
 }
